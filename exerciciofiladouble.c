@@ -2,15 +2,15 @@
 #include <stdlib.h>
 #define TAM_MAX 10
 
-void inserir(int numero);
+void inserir(double numero);
 void inicializar();
 int verificarVazia();
 int verificarCheia();
 void imprimir();
-int remover();
+double remover();
 
 typedef struct fila {
-	int vetor[TAM_MAX];
+	double vetor[TAM_MAX];
     int frente;
 	int final;
 } Fila;
@@ -40,7 +40,7 @@ int verificarCheia() {
 	else return 0;
 }
 
-void inserir(int numero){
+void inserir(double numero){
 	//verificar se a fila nao estah cheia
 	if(!verificarCheia()) {
 		//atualiza o final da fila	
@@ -61,16 +61,17 @@ void imprimir(){
 		//percorrer o vetor de 0 ateh f.final
 		for(i = 0; i <= f.final; i++)
 			//imprimir o elemento na posicao i
-			printf(" %d", f.vetor[i]);
+			printf(" %.2f", f.vetor[i]);
 	} else {
 		printf("\nA fila estah vazia.");
 	}
 }
 
-int remover() {
+double remover() {
 	//verificar se a fila n�o estah vazia
 	if(!verificarVazia()) {
-		int aux, i;
+		int i;
+		double aux;
 		//aux ir� guardar o elemento do in�cio da fila
 		aux = f.vetor[0];
 		//translada os elementos do inicio ao fim -1
@@ -83,10 +84,11 @@ int remover() {
 	} else {
 		printf("A fila estah vazia.");
 	}
+	return 0;
 }
 
-int main(int argc, char *argv[]) {
-	int temp;
+int main() {
+	double temp;
 	int opcao;
 	inicializar();
 
@@ -110,12 +112,12 @@ int main(int argc, char *argv[]) {
 				break;
 			case 2:
 				printf("Digite o numero: ");
-				scanf("%d", &temp);
+				scanf("%lf", &temp);
 				inserir(temp);
 				break;
 			case 3:
 				temp = remover();
-				printf("\nNumero removido: %d", temp);
+				printf("\nNumero removido: %lf", temp);
 				break;
 			case 4:
 				imprimir();
