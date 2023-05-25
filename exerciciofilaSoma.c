@@ -9,6 +9,7 @@ int verificarCheia();
 void imprimir();
 int remover();
 
+
 typedef struct fila {
 	int vetor[TAM_MAX];
     int frente;
@@ -17,8 +18,11 @@ typedef struct fila {
 
 Fila f;
 
+int calcularSoma(Fila f);
+
 Fila criarFila()
-{    
+{
+    Fila f;
     f.frente = -1;
     f.final = -1;
     return f;
@@ -82,14 +86,28 @@ int remover() {
 		return aux;
 	} else {
 		printf("A fila estah vazia.");
+		
 	}
-	return 0 ;
+	return 0;
+}
+
+int calcularSoma(Fila f) {
+    int soma = 0;
+    
+    // Percorre a fila e acumula a soma dos valores
+    for (int i = f.frente; i <= f.final; i++) {
+        soma += f.vetor[i];
+    }
+    
+    return soma;
 }
 
 int main() {
+    
 	int temp;
 	int opcao;
 	inicializar();
+
 
 	do {
 		//exibir o menu
@@ -98,7 +116,8 @@ int main() {
 		printf("\n2. Inserir");
 		printf("\n3. Remover");
 		printf("\n4. Imprimir");
-		printf("\n5. Sair");
+        printf("\n5. Somar");
+		printf("\n6. Sair");
 		printf("\nDigite a opcao desejada: ");
 		
 		//ler a opcao desejada pelo usuario
@@ -121,12 +140,15 @@ int main() {
 			case 4:
 				imprimir();
 				break;
-			case 5:
+            case 5:
+				printf("A soma eh: %d", calcularSoma(f));
+				break;
+			case 6:
 				printf("Encerrando o programa...");
 				break;
 			default:
 				printf("\nOpcao invalida. Escolha um numero valido de opcao.");
 		}
 		
-	} while(opcao != 5);
+	} while(opcao != 6);
 }

@@ -83,10 +83,9 @@ int remover() {
 	} else {
 		printf("A fila estah vazia.");
 	}
-	return 0 ;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
 	int temp;
 	int opcao;
 	inicializar();
